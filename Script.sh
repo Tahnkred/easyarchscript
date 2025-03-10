@@ -1,22 +1,23 @@
+#!/usr/bin/env bash
+
 # Check UEFI
 cat /sys/firmware/efi/fw_platform_size
 
 if [[ $(cat /sys/firmware/efi/fw_platform_size)) == *64* ]];
     then echo -e "\e[32mUEFI is enabled on this device.\e[0m"
+        sleep 3s
     else echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
+        sleep 5s
          exit 0
 fi
-
-# Waits 3 seconds.
-sleep 3s
 
 # Select timezone
 echo "Please select your time zone (format: Continent/Capital. Example: Europe/Paris)"
 
-while true; do
-    read TIMEZONE
+while true;
+    do read TIMEZONE
 
-valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Africa/Algiers" "Africa/Asmara" ...) # Continue la liste
+    valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Africa/Algiers" "Africa/Asmara" ...) # Continue la liste
 
     if [[ "${valid_timezones[@]}" = "${TIMEZONE}" ]];
         then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
@@ -49,25 +50,24 @@ g
 
 # Creating the EFI partition
 n
-echo -e "\n"
-echo -e "\n"
-+512M
-echo -e "\n"
+    echo -e "\n"
+    echo -e "\n"
+    +512M
+    echo -e "\n"
 
 # Creating the ROOT partition
 n
-echo -e "\n"
-echo -e "\n"
-echo -e "\n"
+    echo -e "\n"
+    echo -e "\n"
+    echo -e "\n"
 w
-echo -e "\n"
+    echo -e "\n"
 
 # Creating variables for disk type names: NVMe or HDD/SSD
-
-if [[ ${DISK} = "/dev/sda" || ${DISK} = "/dev/sdb" || ${DISK} = "/dev/sdc" ]]
+if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
     then EFI= ("{$DISK}1") ; ROOT= ("{$DISK}2")
 
-elif [[ ${DISK} = "/dev/nvme0n1" || ${DISK} = "/dev/nvme1n1" || ${DISK} = "/dev/nvme2n1" ]]
+elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI= ("{$DISK}p1") ; ROOT= ("{$DISK}p2")
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
@@ -86,8 +86,8 @@ mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 # Generation of Btrfs subvolumes on ROOT
 echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
 mount ${ROOT} /mnt
-btrfs su cr /mnt/@
-btrfs su cr /mnt/@home
+    btrfs su cr /mnt/@
+    btrfs su cr /mnt/@home
 umount /mnt
 
 # Mounting of ROOT partitions with the final parameters
@@ -103,13 +103,17 @@ mount --mkdir ${EFI} /mnt/efi
 echo "Regeneration of pacman keys"
 pacman-key -init
 pacman-key --populate
-pacman -Sy archlinux-keyring
+pacman -Sy archlinux-keyring --noconfirm --needed
 
 # Installation of the base system
 echo "Installation of the base system"
-pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs archlinux-keyring refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau
+pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
 
 # Installation of the boot loader
 echo "Installation of 'refind' (bootloader)"
 refind-install --root /mnt
-nano /mnt/efi/EFI/refind/refind.conf
+    #sed -i 's/^#oldcommand/timeout 3/' /mnt/efi/EFI/refind/refind.conf
+    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
+    #sed -i 's/^#oldcommand/extra_kernel_version_strings linux-zen,linux-lts,linux-hardened,linux/' /mnt/efi/EFI/refind/refind.conf
+    #sed -i 's/^#oldcommand/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
+    #sed -i 's/^#oldcommand/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
