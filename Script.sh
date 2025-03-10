@@ -77,9 +77,39 @@ fi
 echo "The EFI partition has been created on ${EFI}."
 echo "The ROOT partition has been created on ${ROOT}."
 
-#Formatting the EFI partition to FAT 32
+# Formatting the EFI partition to FAT 32
 mkfs.vfat ${EFI}
 
-#Formatting the ROOT partition to Btrfs
+# Formatting the ROOT partition to Btrfs
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
+# Generation of Btrfs subvolumes on ROOT
+echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
+mount ${ROOT} /mnt
+btrfs su cr /mnt/@
+btrfs su cr /mnt/@home
+umount /mnt
+
+# Mounting of ROOT partitions with the final parameters
+echo "Mounting of the ROOT partition"
+mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
+mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
+
+# Mounting of EFI partition with the final parameters
+echo "Mounting of the EFI partition"
+mount --mkdir ${EFI} /mnt/efi
+
+# Regeneration of pacstrap keys
+echo "Regeneration of pacman keys"
+pacman-key -init
+pacman-key --populate
+pacman -Sy archlinux-keyring
+
+# Installation of the base system
+echo "Installation of the base system"
+pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs archlinux-keyring refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau
+
+# Installation of the boot loader
+echo "Installation of 'refind' (bootloader)"
+refind-install --root /mnt
+nano /mnt/efi/EFI/refind/refind.conf
