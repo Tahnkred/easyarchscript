@@ -117,3 +117,14 @@ refind-install --root /mnt
     #sed -i 's/^#oldcommand/extra_kernel_version_strings linux-zen,linux-lts,linux-hardened,linux/' /mnt/efi/EFI/refind/refind.conf
     #sed -i 's/^#oldcommand/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
     #sed -i 's/^#oldcommand/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
+
+# Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
+UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
+echo ""Boot using standard options"     "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img"
+
+"Boot using fallback initramfs"   "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v-fallback.img"
+
+"Boot to terminal"                "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img systemd.unit=multi-user.target"" > /mnt/boot/refind_linux.conf
+
+#Chrooting
+arch-chroot /mnt /bin/bash
