@@ -65,7 +65,7 @@ echo -e "\n"
 # Creating variables for disk type names: NVMe or HDD/SSD
 
 if [[ ${DISK} = "/dev/sda" || ${DISK} = "/dev/sdb" || ${DISK} = "/dev/sdc" ]]
-    then EFI= ("{$DISK}1") ; ROOT= ("{$DISK} 2")
+    then EFI= ("{$DISK}1") ; ROOT= ("{$DISK}2")
 
 elif [[ ${DISK} = "/dev/nvme0n1" || ${DISK} = "/dev/nvme1n1" || ${DISK} = "/dev/nvme2n1" ]]
     then EFI= ("{$DISK}p1") ; ROOT= ("{$DISK}p2")
