@@ -62,8 +62,8 @@ if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI= $DISKp1 ; ROOT= $DISKp2
-    echo "The EFI partition has been created on ${EFI}."
-    echo "The ROOT partition has been created on ${ROOT}."
+    echo "The EFI partition has been created on $EFI."
+    echo "The ROOT partition has been created on $ROOT."
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
