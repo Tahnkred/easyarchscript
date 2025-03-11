@@ -47,22 +47,23 @@ read ROOT_NAME
 fdisk ${DISK}
 
 # Creating the GPT partition table
-g
+printf -v steps '%\n' g
 
 # Creating the EFI partition
-n
-    echo -e "\n"
-    echo -e "\n"
-    +512M
-    echo -e "\n"
+printf -v steps '%\n' n 1 2048 +512M
+
+#    echo -e "\n"
+#    echo -e "\n"
+#    +512M
+#    echo -e "\n"
 
 # Creating the ROOT partition
-n
-    echo -e "\n"
-    echo -e "\n"
-    echo -e "\n"
-w
-    echo -e "\n"
+printf -v steps '%\n' n 2 \n w
+#    echo -e "\n"
+#    echo -e "\n"
+#    echo -e "\n"
+#w
+#    echo -e "\n"
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
