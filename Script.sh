@@ -52,16 +52,16 @@ echo label: gpt
 
 # Creating the EFI partition
 #printf -v steps '%\n' n 1 2048 +512M
-echo ',512M,L' | sudo sfdisk ${DISK}1
+#echo ',512M,L' | sudo sfdisk ${DISK}1
 
 #    echo -e "\n"
 #    echo -e "\n"
 #    +512M
 #    echo -e "\n"
-
+echo -e ',512M,L\n,,L' | sudo sfdisk /dev/sdX
 # Creating the ROOT partition
 #printf -v steps '%\n' n 2 \n w
-echo ',,L' | sudo sfdisk ${DISK}2
+#echo ',,L' | sudo sfdisk ${DISK}2
 #    echo -e "\n"
 #    echo -e "\n"
 #    echo -e "\n"
