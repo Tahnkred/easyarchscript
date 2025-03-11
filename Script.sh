@@ -56,14 +56,14 @@ echo -e ',512M,L\n,,L\n' | sfdisk ${DISK}
 # Creating variables for disk type names: NVMe or HDD/SSD
 
 if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-    then EFI= $DISK1 ; ROOT= $DISK2
+    then EFI= ${DISK}1 ; ROOT= ${DISK}2
     echo "The EFI partition has been created on ${EFI}."
     echo "The ROOT partition has been created on ${ROOT}."
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-    then EFI= $DISKp1 ; ROOT= $DISKp2
+    then EFI= ${DISK}p1 ; ROOT= ${DISK}p2
     echo "The EFI partition has been created on $EFI."
-    echo "The ROOT partition has been created on $ROOT."
+    echo "The ROOT partition has been created on " print $ROOT "."
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
