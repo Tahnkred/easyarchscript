@@ -71,13 +71,13 @@ echo ',,L' | sudo sfdisk ${DISK}
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-    then EFI= ("{$DISK}1") ; ROOT= ("{$DISK}2")
+    then EFI= ("${DISK}1") ; ROOT= ("${DISK}2")
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-    then EFI= ("{$DISK}p1") ; ROOT= ("{$DISK}p2")
+    then EFI= ("${DISK}p1") ; ROOT= ("${DISK}p2")
 
 if [[ ${DISK} =~ ^/dev/vd[a-z]$ ]]
-    then EFI= ("{$DISK}1") ; ROOT= ("{$DISK}2")
+    then EFI= ("${DISK}1") ; ROOT= ("${DISK}2")
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
