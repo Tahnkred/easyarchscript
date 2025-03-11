@@ -3,7 +3,7 @@
 # Check UEFI
 cat /sys/firmware/efi/fw_platform_size
 
-if [[ $(cat /sys/firmware/efi/fw_platform_size)) == *64* ]];
+if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
     then echo -e "\e[32mUEFI is enabled on this device.\e[0m"
         sleep 3s
     else echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
