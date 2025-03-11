@@ -45,13 +45,13 @@ read ROOT_NAME
 
 # Formatting ${DISK}...
 echo -e wipefs -a ${DISK}
-
+lsblk
 # Creating the GPT partition table
 echo label: gpt
 
 # Creating the EFI and ROOT partitions
 
-echo -e ',512M,L\n,,L\n' | sfdisk ${DISK}
+echo -e ',512M,L\n,' | sfdisk ${DISK}
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 
@@ -72,10 +72,10 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Formatting the EFI partition to FAT 32
-echo mkfs.vfat $EFI
+mkfs.vfat $EFI
 
 # Formatting the ROOT partition to Btrfs
-echo mkfs.btrfs -L $ROOT_NAME $ROOT
+#mkfs.btrfs -L $ROOT_NAME $ROOT
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
