@@ -37,20 +37,23 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 timedatectl set-ntp true
 
 # Hard disk configuration
-lsblk
+#lsblk
+sfdisk -l -uM
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
 read DISK
 
 echo "How would you like to name your main partition?"
 read ROOT_NAME
 
-fdisk ${DISK}
-
+#fdisk ${DISK}
+sfdisk ${DISK}
 # Creating the GPT partition table
-printf -v steps '%\n' g
+#printf -v steps '%\n' g
+echo label: gpt
 
 # Creating the EFI partition
-printf -v steps '%\n' n 1 2048 +512M
+#printf -v steps '%\n' n 1 2048 +512M
+echo ',512M,L' | sudo sfdisk ${DISK}
 
 #    echo -e "\n"
 #    echo -e "\n"
@@ -58,7 +61,8 @@ printf -v steps '%\n' n 1 2048 +512M
 #    echo -e "\n"
 
 # Creating the ROOT partition
-printf -v steps '%\n' n 2 \n w
+#printf -v steps '%\n' n 2 \n w
+echo ',,L' | sudo sfdisk ${DISK}
 #    echo -e "\n"
 #    echo -e "\n"
 #    echo -e "\n"
