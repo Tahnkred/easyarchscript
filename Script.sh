@@ -37,8 +37,8 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 timedatectl set-ntp true
 
 # Hard disk configuration
-#lsblk
-sfdisk -l -uM
+lsblk
+#sfdisk -l -uM
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
 read DISK
 
@@ -46,7 +46,7 @@ echo "How would you like to name your main partition?"
 read ROOT_NAME
 
 #fdisk ${DISK}
-sfdisk ${DISK}
+#sfdisk ${DISK}
 # Creating the GPT partition table
 #printf -v steps '%\n' g
 echo label: gpt
