@@ -72,10 +72,10 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat ${EFI}
+mkfs.vfat -f ${EFI}
 
 # Formatting the ROOT partition to Btrfs
-mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
+mkfs.btrfs -L -f ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
 echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
@@ -85,9 +85,9 @@ mount ${ROOT} /mnt
 umount /mnt
 
 # Mounting of ROOT partitions with the final parameters
-#echo "Mounting of the ROOT partition"
-#mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
-#mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
+echo "Mounting of the ROOT partition"
+mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
+mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
 
 # Mounting of EFI partition with the final parameters
 #echo "Mounting of the EFI partition"
