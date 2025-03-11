@@ -58,24 +58,24 @@ echo -e ',512M,L\n,,L\n' | sfdisk ${DISK}
 if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
     then EFI="${DISK}1"
          ROOT="${DISK}2"
-    echo "\e[32mThe EFI partition has been created on\e[0m ${EFI}\e[32m.\e[0m"
-    echo "\e[32mThe ROOT partition has been created on\e[0m ${ROOT}\e[32m.\e[0m"
+    echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
+    echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI="${DISK}p1"
          ROOT="${DISK}p2"
-    echo "\e[32mThe EFI partition has been created on\e[0m ${EFI}\e[32m.\e[0m"
-    echo "\e[32mThe ROOT partition has been created on\e[0m ${ROOT}\e[32m.\e[0m"
+    echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
+    echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
 fi
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat $EFI
+echo mkfs.vfat $EFI
 
 # Formatting the ROOT partition to Btrfs
-#mkfs.btrfs -L $ROOT_NAME $ROOT
+echo mkfs.btrfs -L $ROOT_NAME $ROOT
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
