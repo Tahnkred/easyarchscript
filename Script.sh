@@ -14,23 +14,24 @@ fi
 # Select timezone
 echo "Please select your time zone (format: Continent/Capital. Example: Europe/Paris)"
 
-while true;
-    do read TIMEZONE
+#while true;
+    #do
+    read TIMEZONE
 
-    valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Europe/Paris" "Africa/Asmara" ...) # Continue la liste
+#    #valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Europe/Paris" "Africa/Asmara" ...) # Continue la liste
 
-    if [[ "${valid_timezones[@]}" = "${TIMEZONE}" ]];
-        then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
+#    #if [[ "${valid_timezones[@]}" = "${TIMEZONE}" ]];
+#     #   then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
                 timedatectl set-timezone "${TIMEZONE}"
-        break
+#      #  break
 
-    elif ["${TIMEZONE}" = "Help" || "${TIMEZONE}" = "help" || "${TIMEZONE}" = "h" || "${TIMEZONE}" = "H"];
-        then    timedatectl list-timezones
+#    elif ["${TIMEZONE}" = "Help" || "${TIMEZONE}" = "help" || "${TIMEZONE}" = "h" || "${TIMEZONE}" = "H"];
+#        then    timedatectl list-timezones
 
-    else echo -e "\e[31mError! The specified time zone does not exist in 'list-timezones'. Please enter a valid time zone again.\e[0m"
-         echo -e "\e[1;32;1;4mHelp:\e[0m If you want to view the list of time zones, run the command '\e[32mtimedatectl list-timezones\e[0m'."
-    fi
-done
+#    else echo -e "\e[31mError! The specified time zone does not exist in 'list-timezones'. Please enter a valid time zone again.\e[0m"
+#         echo -e "\e[1;32;1;4mHelp:\e[0m If you want to view the list of time zones, run the command '\e[32mtimedatectl list-timezones\e[0m'."
+#    fi
+#done
 
 # Enabling NTP synchronization
 timedatectl set-ntp true
