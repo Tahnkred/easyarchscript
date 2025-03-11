@@ -46,6 +46,10 @@ read ROOT_NAME
 
 #fdisk ${DISK}
 #sfdisk ${DISK}
+
+# Formatting ${DISK}...
+echo wipefs -a ${DISK}
+
 # Creating the GPT partition table
 #printf -v steps '%\n' g
 echo label: gpt
