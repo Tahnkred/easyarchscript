@@ -51,7 +51,7 @@ echo label: gpt
 
 # Creating the EFI and ROOT partitions
 
-echo -e ',512M,L\n,' | sfdisk ${DISK}
+echo -e ',512M,L\n,,L' | sfdisk ${DISK}
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 
