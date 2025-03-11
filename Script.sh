@@ -17,7 +17,7 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 while true;
     do read TIMEZONE
 
-    valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Africa/Algiers" "Africa/Asmara" ...) # Continue la liste
+    valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Europe/Paris" "Africa/Asmara" ...) # Continue la liste
 
     if [[ "${valid_timezones[@]}" = "${TIMEZONE}" ]];
         then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
@@ -69,6 +69,9 @@ if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI= ("{$DISK}p1") ; ROOT= ("{$DISK}p2")
+
+if [[ ${DISK} =~ ^/dev/vd[a-z]$ ]]
+    then EFI= ("{$DISK}1") ; ROOT= ("{$DISK}2")
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
