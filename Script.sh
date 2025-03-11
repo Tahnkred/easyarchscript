@@ -52,7 +52,7 @@ echo label: gpt
 
 # Creating the EFI partition
 #printf -v steps '%\n' n 1 2048 +512M
-echo ',512M,L' | sudo sfdisk ${DISK}
+echo ',512M,L' | sudo sfdisk ${DISK}1
 
 #    echo -e "\n"
 #    echo -e "\n"
@@ -61,7 +61,7 @@ echo ',512M,L' | sudo sfdisk ${DISK}
 
 # Creating the ROOT partition
 #printf -v steps '%\n' n 2 \n w
-echo ',,L' | sudo sfdisk ${DISK}
+echo ',,L' | sudo sfdisk ${DISK}2
 #    echo -e "\n"
 #    echo -e "\n"
 #    echo -e "\n"
@@ -69,18 +69,18 @@ echo ',,L' | sudo sfdisk ${DISK}
 #    echo -e "\n"
 
 # Creating variables for disk type names: NVMe or HDD/SSD
-if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
+#if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
+#    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
 
-elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-    then EFI= "${DISK}p1" ; ROOT= "${DISK}p2"
+#elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
+#    then EFI= "${DISK}p1" ; ROOT= "${DISK}p2"
 
-if [[ ${DISK} =~ ^/dev/vd[a-z]$ ]]
-    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
+#if [[ ${DISK} =~ ^/dev/vd[a-z]$ ]]
+#    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
 
-else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
-     exit 0
-fi
+#else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
+#     exit 0
+#fi
 
 echo "The EFI partition has been created on ${EFI}."
 echo "The ROOT partition has been created on ${ROOT}."
