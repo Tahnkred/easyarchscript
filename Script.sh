@@ -65,19 +65,6 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
      exit 0
 fi
 
-#if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-#    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
-
-#elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-#    then EFI= "${DISK}p1" ; ROOT= "${DISK}p2"
-
-#if [[ ${DISK} =~ ^/dev/vd[a-z]$ ]]
-#    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
-
-#else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
-#     exit 0
-#fi
-
 echo "The EFI partition has been created on ${EFI}."
 echo "The ROOT partition has been created on ${ROOT}."
 
@@ -88,47 +75,47 @@ mkfs.vfat ${EFI}
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
-echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
-mount ${ROOT} /mnt
-    btrfs su cr /mnt/@
-    btrfs su cr /mnt/@home
-umount /mnt
+#echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
+#mount ${ROOT} /mnt
+#    btrfs su cr /mnt/@
+#    btrfs su cr /mnt/@home
+#umount /mnt
 
 # Mounting of ROOT partitions with the final parameters
-echo "Mounting of the ROOT partition"
-mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
-mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
+#echo "Mounting of the ROOT partition"
+#mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
+#mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
 
 # Mounting of EFI partition with the final parameters
-echo "Mounting of the EFI partition"
-mount --mkdir ${EFI} /mnt/efi
+#echo "Mounting of the EFI partition"
+#mount --mkdir ${EFI} /mnt/efi
 
 # Regeneration of pacstrap keys
-echo "Regeneration of pacman keys"
-pacman-key -init
-pacman-key --populate
-pacman -Sy archlinux-keyring --noconfirm --needed
+#echo "Regeneration of pacman keys"
+#pacman-key -init
+#pacman-key --populate
+#pacman -Sy archlinux-keyring --noconfirm --needed
 
 # Installation of the base system
-echo "Installation of the base system"
-pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
+#echo "Installation of the base system"
+#pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
 
 # Installation of the boot loader
-echo "Installation of 'refind' (bootloader)"
-refind-install --root /mnt
+#echo "Installation of 'refind' (bootloader)"
+#refind-install --root /mnt
     #sed -i 's/^#oldcommand/timeout 3/' /mnt/efi/EFI/refind/refind.conf
-    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
+#    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
     #sed -i 's/^#oldcommand/extra_kernel_version_strings linux-zen,linux-lts,linux-hardened,linux/' /mnt/efi/EFI/refind/refind.conf
     #sed -i 's/^#oldcommand/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
     #sed -i 's/^#oldcommand/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
 
 # Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
-UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
-echo ""Boot using standard options"     "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img"
+#UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
+#echo ""Boot using standard options"     "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img"
 
-"Boot using fallback initramfs"   "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v-fallback.img"
+#"Boot using fallback initramfs"   "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v-fallback.img"
 
-"Boot to terminal"                "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img systemd.unit=multi-user.target"" > /mnt/boot/refind_linux.conf
+#"Boot to terminal"                "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img systemd.unit=multi-user.target"" > /mnt/boot/refind_linux.conf
 
 #Chrooting
-arch-chroot /mnt /bin/bash
+#arch-chroot /mnt /bin/bash
