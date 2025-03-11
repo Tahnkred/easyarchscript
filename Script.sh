@@ -58,7 +58,7 @@ echo label: gpt
 #    echo -e "\n"
 #    +512M
 #    echo -e "\n"
-echo -e ',512M,L\n,,L' | sudo sfdisk /dev/sdX
+echo -e ',512M,L\n,,L' | sfdisk ${DISK}
 # Creating the ROOT partition
 #printf -v steps '%\n' n 2 \n w
 #echo ',,L' | sudo sfdisk ${DISK}2
