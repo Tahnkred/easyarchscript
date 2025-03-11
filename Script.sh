@@ -37,42 +37,34 @@ timedatectl set-ntp true
 
 # Hard disk configuration
 lsblk
-#sfdisk -l -uM
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
 read DISK
 
 echo "How would you like to name your main partition?"
 read ROOT_NAME
 
-#fdisk ${DISK}
-#sfdisk ${DISK}
-
 # Formatting ${DISK}...
 echo -e wipefs -a ${DISK}
 
 # Creating the GPT partition table
-#printf -v steps '%\n' g
 echo label: gpt
 
-# Creating the EFI partition
-#printf -v steps '%\n' n 1 2048 +512M
-#echo ',512M,L' | sudo sfdisk ${DISK}1
+# Creating the EFI and ROOT partitions
 
-#    echo -e "\n"
-#    echo -e "\n"
-#    +512M
-#    echo -e "\n"
 echo -e ',512M,L\n,,L\n' | sfdisk ${DISK}
-# Creating the ROOT partition
-#printf -v steps '%\n' n 2 \n w
-#echo ',,L' | sudo sfdisk ${DISK}2
-#    echo -e "\n"
-#    echo -e "\n"
-#    echo -e "\n"
-#w
-#    echo -e "\n"
 
 # Creating variables for disk type names: NVMe or HDD/SSD
+
+if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
+    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
+
+elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
+    then EFI= "${DISK}p1" ; ROOT= "${DISK}p2"
+
+else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
+     exit 0
+fi
+
 #if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
 #    then EFI= "${DISK}1" ; ROOT= "${DISK}2"
 
