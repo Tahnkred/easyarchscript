@@ -149,7 +149,7 @@ refind-install --root /mnt
 # Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
 UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf | head -n 1)
 echo -e "/easyarchscript/refind_linux.conf" > /mnt/boot/refind_linux.conf
-
+sed -i 's/(XXXXXXXX)/${UUID}/g' /mnt/boot/refind_linux.conf
 
 #Chrooting
 #arch-chroot /mnt /bin/bash
