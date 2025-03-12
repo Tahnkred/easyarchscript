@@ -9,7 +9,32 @@
 
 #Keyboard layout
 echo "Please enter your keyboard layout"
-read KEYBOARD
+echo "1-    French, default"
+echo "2-    French, Macintosh"
+echo
+echo "3-    United States, default"
+echo "4-    United States, Macintosh"
+echo
+echo "5-    United Kingdom, default"
+echo "6-    United Kingdom, Macintosh"
+
+while true;
+    do
+    read KEYBOARD_ENTRY
+
+    if [[ "${KEYBOARD_ENTRY}" = "1" ]];
+        then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
+                loadkeys fr-latin1
+        break
+
+    elif ["${TIMEZONE}" = "Help" || "${TIMEZONE}" = "help" || "${TIMEZONE}" = "h" || "${TIMEZONE}" = "H"];
+        then    timedatectl list-timezones
+        break
+
+    else echo -e "\e[31mError! The specified time zone does not exist in 'list-timezones'. Please enter a valid time zone again.\e[0m"
+         echo -e "\e[1;32;1;4mHelp:\e[0m If you want to view the list of time zones, run the command '\e[32mtimedatectl list-timezones\e[0m'."
+    fi
+done
 
 # Clear
 clear
@@ -140,6 +165,9 @@ clear
 echo "Installation of the base system"
 pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
 
+# Clear
+clear
+
 # Installation of the boot loader (refind.conf)
 echo "Installation of 'refind' (bootloader)"
 refind-install --root /mnt
@@ -153,6 +181,9 @@ refind-install --root /mnt
 UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf | head -n 1)
 cat /easyarchscript/Bootloader/refind_linux.conf > /mnt/boot/refind_linux.conf
 sed -i 's/(XXXXXXXX)/${UUID}/g' /mnt/boot/refind_linux.conf
+
+# Clear
+#clear
 
 #Chrooting
 #arch-chroot /mnt /bin/bash
