@@ -87,7 +87,16 @@ fi
 clear
 
 # Formatting the EFI partition to FAT 32
-echo mkfs.vfat -f ${EFI}
+#mkfs.vfat -f ${EFI}
+mkfs.fat -F 32 ${EFI}
+
+# Verification of EFI formatting in FAT32
+if [ ${EFI} -eq 0 ]; then
+  echo "Partitioning of ${EFI} in FAT32 successful"
+else
+  echo "Error during ${EFI} formatting"
+  exit 1
+fi
 
 # Formatting the ROOT partition to Btrfs
 #mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
