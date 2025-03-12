@@ -272,5 +272,8 @@ sleep 5s
 # Clear
 clear
 
+# Copying Chrooting.sh on ${ROOT}/mnt/@home in order to execute it
+cp /root/easyarchscript/Chrooting.sh /mnt/@home
+
 #Chrooting
-arch-chroot /mnt /bin/bash
+arch-chroot /mnt sh Chrooting.sh
