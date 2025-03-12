@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # loadkeys mac-fr
-# pacman -Sy git
+# pacman -S git
 # git clone https://github.com/Tahnkred/easyarchscript
 # cd easyarchscript
 # sh Script.sh
