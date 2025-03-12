@@ -84,10 +84,10 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat ${EFI} -f
+mkfs.vfat -f ${EFI}
 
 # Formatting the ROOT partition to Btrfs
-#mkfs.btrfs -L ${ROOT_NAME} ${ROOT}  -f
+#mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
