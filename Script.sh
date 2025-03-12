@@ -56,7 +56,7 @@ echo "How would you like to name your main partition?"
 read ROOT_NAME
 
 # Formatting ${DISK}...
-wipefs ${DISK}
+wipefs -f ${DISK}
 lsblk
 # Creating the GPT partition table
 parted --script ${DISK} mklabel gpt
@@ -89,7 +89,7 @@ fi
 clear
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat -f ${EFI}
+mkfs.vfat ${EFI}
 
 # Verification of EFI formatting in FAT32
 #if [ ${EFI} -eq 0 ]; then
@@ -100,7 +100,7 @@ mkfs.vfat -f ${EFI}
 #fi
 
 # Formatting the ROOT partition to Btrfs
-mkfs.btrfs -f -L ${ROOT_NAME} ${ROOT}
+mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
