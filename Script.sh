@@ -54,7 +54,7 @@ read ROOT_NAME
 wipefs ${DISK}
 lsblk
 # Creating the GPT partition table
-sfdisk ${DISK} label: gpt
+parted --script ${DISK} mklabel gpt
 
 # Creating the EFI and ROOT partitions
 
@@ -79,10 +79,10 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat ${EFI}
+mkfs.vfat ${EFI} -f
 
 # Formatting the ROOT partition to Btrfs
-mkfs.btrfs -L -f ${ROOT_NAME} ${ROOT}
+mkfs.btrfs -L ${ROOT_NAME} ${ROOT}  -f
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
