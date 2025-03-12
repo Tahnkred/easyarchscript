@@ -5,6 +5,7 @@ cat /sys/firmware/efi/fw_platform_size
 
 if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
     then echo -e "\e[32mUEFI is enabled on this device.\e[0m"
+        sleep 1s
     else echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
         sleep 5s
          exit 0
@@ -53,7 +54,7 @@ read ROOT_NAME
 wipefs ${DISK}
 lsblk
 # Creating the GPT partition table
-echo label: gpt
+sfdisk ${DISK} label: gpt
 
 # Creating the EFI and ROOT partitions
 
@@ -81,7 +82,7 @@ fi
 mkfs.vfat ${EFI}
 
 # Formatting the ROOT partition to Btrfs
-mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
+mkfs.btrfs -L -f ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
