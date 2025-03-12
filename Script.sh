@@ -86,10 +86,10 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Clear
-clear
+#clear
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat ${EFI}
+#mkfs.vfat ${EFI}
 
 # Verification of EFI formatting in FAT32
 #if [ ${EFI} -eq 0 ]; then
