@@ -15,7 +15,7 @@ cat /sys/firmware/efi/fw_platform_size
 
 if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
     then echo -e "\e[32mUEFI is enabled on this device.\e[0m"
-        sleep 1s
+        sleep 0.5s
     else echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
         sleep 5s
          exit 0
@@ -111,7 +111,7 @@ while true;
     fi
 done
 
-sleep 10s
+sleep 0.5s
 
 # Clear
 clear
@@ -220,7 +220,7 @@ echo "Mounting of the ROOT partition"
 mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
 mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
 
- Mounting of EFI partition with the final parameters
+# Mounting of EFI partition with the final parameters
 echo "Mounting of the EFI partition"
 mount --mkdir ${EFI} /mnt/efi
 
@@ -271,7 +271,7 @@ sleep 5s
 clear
 
 # Copying Chrooting.sh on ${ROOT}/mnt/@home in order to execute it
-cp /root/easyarchscript/Chrooting.sh /mnt/@home
+cp /root/easyarchscript/Chrooting.sh ${ROOT}/mnt/@home
 
 # Sending values to Chrooting.sh in order to make it work
 ./${ROOT}/mnt/@home/script2.sh "${KEYBOARD}"
