@@ -122,7 +122,7 @@ echo "Mounting of the EFI partition"
 mount --mkdir ${EFI} /mnt/efi
 
 # Clear
-clear
+#clear
 
 # Regeneration of pacstrap keys
 #echo "Regeneration of pacman keys"
