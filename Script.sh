@@ -136,15 +136,16 @@ pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware inte
 
 # Installation of the boot loader
 echo "Installation of 'refind' (bootloader)"
-#refind-install --root /mnt
-    #sed -i 's/^#oldcommand/timeout 3/' /mnt/efi/EFI/refind/refind.conf
-#    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
-    #sed -i 's/^#oldcommand/extra_kernel_version_strings linux-zen,linux-lts,linux-hardened,linux/' /mnt/efi/EFI/refind/refind.conf
-    #sed -i 's/^#oldcommand/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
-    #sed -i 's/^#oldcommand/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
+refind-install --root /mnt
+    sed -i 's/^timeout 20/timeout 3/' /mnt/efi/EFI/refind/refind.conf
+    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
+    sed -i 's/^extra_kernel_version_strings linux-lts,linux/extra_kernel_version_strings linux-zen,linux-lts,linux-hardened,linux/' /mnt/efi/EFI/refind/refind.conf
+    sed -i 's/^#fold_linux_kernels false/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
+    sed -i 's/^#default_selection "+,bzImage,vmlinuz"/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
 
 # Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
-#UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
+UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
+echo ${UUID}
 #echo ""Boot using standard options"     "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img"
 
 #"Boot using fallback initramfs"   "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v-fallback.img"
