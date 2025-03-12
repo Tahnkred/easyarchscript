@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Clear
+clear
+
 # Check UEFI
 cat /sys/firmware/efi/fw_platform_size
 
@@ -46,7 +49,9 @@ clear
 lsblk
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
 read DISK
-
+echo
+echo
+echo
 echo "How would you like to name your main partition?"
 read ROOT_NAME
 
