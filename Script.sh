@@ -94,37 +94,35 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
 fi
 
 # Clear
-#clear
+clear
 
 # Formatting the EFI partition to FAT 32
 mkfs.vfat ${EFI}
 
-# Verification of EFI formatting in FAT32
-#if [ ${EFI} -eq 0 ]; then
-#  echo "Partitioning of ${EFI} in FAT32 successful"
-#else
-#  echo "Error during ${EFI} formatting"
-#  exit 1
-#fi
-
 # Formatting the ROOT partition to Btrfs
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
+# Clear
+clear
+
 # Generation of Btrfs subvolumes on ROOT
-#echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
-#mount ${ROOT} /mnt
-#    btrfs su cr /mnt/@
-#    btrfs su cr /mnt/@home
-#umount /mnt
+echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
+mount ${ROOT} /mnt
+    btrfs su cr /mnt/@
+    btrfs su cr /mnt/@home
+umount /mnt
 
 # Mounting of ROOT partitions with the final parameters
-#echo "Mounting of the ROOT partition"
-#mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
-#mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
+echo "Mounting of the ROOT partition"
+mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
+mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
 
-# Mounting of EFI partition with the final parameters
-#echo "Mounting of the EFI partition"
-#mount --mkdir ${EFI} /mnt/efi
+ Mounting of EFI partition with the final parameters
+echo "Mounting of the EFI partition"
+mount --mkdir ${EFI} /mnt/efi
+
+# Clear
+clear
 
 # Regeneration of pacstrap keys
 #echo "Regeneration of pacman keys"
