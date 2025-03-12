@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # loadkeys mac-fr
-# pacman -S git
+# pacman -Sy git
 # git clone https://github.com/Tahnkred/easyarchscript
 # cd easyarchscript
 # sh Script.sh
@@ -130,6 +130,9 @@ pacman-key -init
 pacman-key --populate
 pacman -Sy archlinux-keyring --noconfirm --needed
 
+# Clear
+clear
+
 # Installation of the base system
 echo "Installation of the base system"
 pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
@@ -144,7 +147,7 @@ refind-install --root /mnt
     sed -i 's/^#default_selection "+,bzImage,vmlinuz"/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
 
 # Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
-UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf)
+UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf | head -n 1)
 echo ${UUID}
 #echo ""Boot using standard options"     "root=UUID=${UUID} rw add_efi_memmap zswap.enabled=0 rootflags=subvol=@ initrd=@\boot\intel-ucode.img initrd=@\boot\amd-ucode.img initrd=@\boot\initramfs-%v.img"
 
