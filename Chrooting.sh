@@ -27,4 +27,9 @@ sleep 5s
 
 # Installing NetworkManager
 pacman -Syu networkmanager
+
+sleep 5s
+
 systemctl enable NetworkManager
+
+sleep 5s
