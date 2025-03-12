@@ -90,7 +90,7 @@ clear
 
 # Formatting the EFI partition to FAT 32
 #mkfs.vfat -f ${EFI}
-printf mkfs.fat -F 32 ${EFI}
+printf mkfs.vfat ${EFI}
 
 # Verification of EFI formatting in FAT32
 if [ ${EFI} -eq 0 ]; then
