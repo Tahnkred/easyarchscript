@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# loadkeys mac-fr
+# pacman -Sy git
+# git clone https://github.com/Tahnkred/easyarchscript
+# cd easyarchscript
+# sh Script.sh
+# to update : git pull origin main
+
+
 # Clear
 clear
 
