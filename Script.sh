@@ -10,6 +10,9 @@ if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
          exit 0
 fi
 
+# Clear
+clear
+
 # Select timezone
 echo "Please select your time zone (format: Continent/Capital. Example: Europe/Paris)"
 
@@ -35,6 +38,9 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 # Enabling NTP synchronization
 timedatectl set-ntp true
 
+# Clear
+clear
+
 # Hard disk configuration
 lsblk
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
@@ -44,7 +50,7 @@ echo "How would you like to name your main partition?"
 read ROOT_NAME
 
 # Formatting ${DISK}...
-wipefs -a ${DISK} --needed
+wipefs ${DISK}
 lsblk
 # Creating the GPT partition table
 echo label: gpt
