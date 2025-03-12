@@ -7,6 +7,9 @@
 # sh Install.sh
 # to update : git pull origin main
 
+#Keyboard layout
+echo "Please enter your keyboard layout"
+read KEYBOARD
 
 # Clear
 clear
@@ -153,3 +156,9 @@ sed -i 's/(XXXXXXXX)/${UUID}/g' /mnt/boot/refind_linux.conf
 
 #Chrooting
 #arch-chroot /mnt /bin/bash
+
+# Setting keyboard layout
+#loadkeys ${KEYBOARD}
+
+# Making it permanant to the system
+#echo 'KEYMAP=${KEYBOARD}' >> /etc/vconsole.conf
