@@ -122,20 +122,20 @@ echo "Mounting of the EFI partition"
 mount --mkdir ${EFI} /mnt/efi
 
 # Clear
-#clear
+clear
 
 # Regeneration of pacstrap keys
-#echo "Regeneration of pacman keys"
-#pacman-key -init
-#pacman-key --populate
-#pacman -Sy archlinux-keyring --noconfirm --needed
+echo "Regeneration of pacman keys"
+pacman-key -init
+pacman-key --populate
+pacman -Sy archlinux-keyring --noconfirm --needed
 
 # Installation of the base system
-#echo "Installation of the base system"
-#pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
+echo "Installation of the base system"
+pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
 
 # Installation of the boot loader
-#echo "Installation of 'refind' (bootloader)"
+echo "Installation of 'refind' (bootloader)"
 #refind-install --root /mnt
     #sed -i 's/^#oldcommand/timeout 3/' /mnt/efi/EFI/refind/refind.conf
 #    sed -i 's/^#enable_mouse/enable_mouse/' /mnt/efi/EFI/refind/refind.conf
