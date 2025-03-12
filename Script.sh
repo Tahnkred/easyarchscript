@@ -89,7 +89,7 @@ fi
 clear
 
 # Formatting the EFI partition to FAT 32
-mkfs.vfat ${EFI}
+mkfs.vfat -f ${EFI}
 
 # Verification of EFI formatting in FAT32
 #if [ ${EFI} -eq 0 ]; then
@@ -100,7 +100,7 @@ mkfs.vfat ${EFI}
 #fi
 
 # Formatting the ROOT partition to Btrfs
-mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
+mkfs.btrfs -f -L ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
 #echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
