@@ -56,7 +56,7 @@ echo "How would you like to name your main partition?"
 read ROOT_NAME
 
 # Formatting ${DISK}...
-wipefs -f ${DISK}
+wipefs --all ${DISK}
 lsblk
 # Creating the GPT partition table
 parted --script ${DISK} mklabel gpt
