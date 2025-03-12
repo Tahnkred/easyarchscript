@@ -34,12 +34,12 @@ echo
 echo "3     -    French           default"
 echo "4     -    French           Macintosh"
 echo
-#echo "5     -    Spain            default"
-#echo "6     -    Spain            Macintosh"
-#echo
-#echo "7     -    United Kingdom   default"
-#echo "8     -    United Kingdom   Macintosh"
-#echo
+echo "5     -    Spain            default"
+echo "6     -    Spain            Macintosh"
+echo
+echo "7     -    United Kingdom   default"
+echo "8     -    United Kingdom   Macintosh"
+echo
 echo "9     -    United States    default"
 echo "10    -    United States    Macintosh"
 echo
@@ -77,35 +77,35 @@ while true;
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 5 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 5 ]];
+        then    ${KEYBOARD}="es"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 6 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 6 ]];
+        then    ${KEYBOARD}="mac-es"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 7 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 7 ]];
+        then    ${KEYBOARD}="uk"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 8 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 8 ]];
+        then    ${KEYBOARD}="mac-uk"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 9 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 9 ]];
+        then    ${KEYBOARD}="us"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
-#        elif [[ ${KEYBOARD_ENTRY} = 10 ]];
-#        then    ${KEYBOARD}="mac-fr"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
-#        break
+        elif [[ ${KEYBOARD_ENTRY} = 10 ]];
+        then    ${KEYBOARD}="mac-us"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
 
     else echo -e "\e[31mError! Please enter a value zone again.\e[0m"
     fi
