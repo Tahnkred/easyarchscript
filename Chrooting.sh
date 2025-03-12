@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+KEYBOARD=${KEYBOARD}
+
+echo ${KEYBOARD}
+
+sleep 10s
+
 # Setting keyboard layout
 loadkeys ${KEYBOARD}
 

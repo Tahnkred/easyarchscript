@@ -51,58 +51,58 @@ while true;
     do
     read KEYBOARD_ENTRY
 
-    if [[ "${KEYBOARD_ENTRY}" = 0 ]];
+    if [[ ${KEYBOARD_ENTRY} = "0" ]];
         then    echo "Please enter manually your keyboard layout"
                 read KEYBOARD
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-#        elif [[ "${KEYBOARD_ENTRY}" = 1 ]];
+#        elif [[ "${KEYBOARD_ENTRY}" = "1" ]];
 #        then    ${KEYBOARD}="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
-#        elif [[ "${KEYBOARD_ENTRY}" = 2 ]];
+#        elif [[ "${KEYBOARD_ENTRY}" = "2" ]];
 #        then    ${KEYBOARD}="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
-        elif [[ ${KEYBOARD_ENTRY} = 3 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "3" ]];
         then    ${KEYBOARD}="fr-latin1"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 4 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "4" ]];
         then    ${KEYBOARD}="mac-fr"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 5 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "5" ]];
         then    ${KEYBOARD}="es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 6 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "6" ]];
         then    ${KEYBOARD}="mac-es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 7 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "7" ]];
         then    ${KEYBOARD}="uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 8 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "8" ]];
         then    ${KEYBOARD}="mac-uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 9 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "9" ]];
         then    ${KEYBOARD}="us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
-        elif [[ ${KEYBOARD_ENTRY} = 10 ]];
+        elif [[ ${KEYBOARD_ENTRY} = "10" ]];
         then    ${KEYBOARD}="mac-us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
@@ -111,7 +111,7 @@ while true;
     fi
 done
 
-sleep 5s
+sleep 10s
 
 # Clear
 clear
@@ -140,8 +140,6 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 
 # Enabling NTP synchronization
 timedatectl set-ntp true
-
-sleep 5s
 
 # Clear
 clear
@@ -275,5 +273,8 @@ clear
 # Copying Chrooting.sh on ${ROOT}/mnt/@home in order to execute it
 cp /root/easyarchscript/Chrooting.sh /mnt/@home
 
+# Sending values to Chrooting.sh in order to make it work
+./${ROOT}/mnt/@home/script2.sh "${KEYBOARD}"
+
 #Chrooting
-arch-chroot /mnt sh Chrooting.sh
+arch-chroot /mnt/@home sh Chrooting.sh
