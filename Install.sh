@@ -7,35 +7,6 @@
 # sh Install.sh
 # to update : git pull origin main
 
-#Keyboard layout
-echo "Please enter your keyboard layout"
-echo "1-    French, default"
-echo "2-    French, Macintosh"
-echo
-echo "3-    United States, default"
-echo "4-    United States, Macintosh"
-echo
-echo "5-    United Kingdom, default"
-echo "6-    United Kingdom, Macintosh"
-
-while true;
-    do
-    read KEYBOARD_ENTRY
-
-    if [[ "${KEYBOARD_ENTRY}" = "1" ]];
-        then    echo -e "\e[32mThe time zone has been set to "${TIMEZONE}".\e[0m"
-                loadkeys fr-latin1
-        break
-
-    elif ["${TIMEZONE}" = "Help" || "${TIMEZONE}" = "help" || "${TIMEZONE}" = "h" || "${TIMEZONE}" = "H"];
-        then    timedatectl list-timezones
-        break
-
-    else echo -e "\e[31mError! The specified time zone does not exist in 'list-timezones'. Please enter a valid time zone again.\e[0m"
-         echo -e "\e[1;32;1;4mHelp:\e[0m If you want to view the list of time zones, run the command '\e[32mtimedatectl list-timezones\e[0m'."
-    fi
-done
-
 # Clear
 clear
 
@@ -49,6 +20,96 @@ if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
         sleep 5s
          exit 0
 fi
+
+# Clear
+clear
+
+#Keyboard layout
+echo "Please enter your keyboard layout (enter the number below)"
+echo
+echo
+#echo "1     -    Brazil           default"
+#echo "2     -    Brazil           Macintosh"
+#echo
+echo "3     -    French           default"
+echo "4     -    French           Macintosh"
+echo
+#echo "5     -    Spain            default"
+#echo "6     -    Spain            Macintosh"
+#echo
+#echo "7     -    United Kingdom   default"
+#echo "8     -    United Kingdom   Macintosh"
+#echo
+echo "9     -    United States    default"
+echo "10    -    United States    Macintosh"
+echo
+echo
+echo "0     -    other imput"
+echo
+echo
+while true;
+    do
+    read KEYBOARD_ENTRY
+
+    if [[ "${KEYBOARD_ENTRY}" = 0 ]];
+        then    echo "Please enter manually your keyboard layout"
+                read KEYBOARD
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
+
+#        elif [[ "${KEYBOARD_ENTRY}" = 1 ]];
+#        then    ${KEYBOARD}="fr-latin1"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ "${KEYBOARD_ENTRY}" = 2 ]];
+#        then    ${KEYBOARD}="fr-latin1"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+        elif [[ ${KEYBOARD_ENTRY} = 3 ]];
+        then    ${KEYBOARD}="fr-latin1"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
+
+        elif [[ ${KEYBOARD_ENTRY} = 4 ]];
+        then    ${KEYBOARD}="mac-fr"
+                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 5 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 6 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 7 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 8 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 9 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+#        elif [[ ${KEYBOARD_ENTRY} = 10 ]];
+#        then    ${KEYBOARD}="mac-fr"
+#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#        break
+
+    else echo -e "\e[31mError! Please enter a value zone again.\e[0m"
+    fi
+done
 
 # Clear
 clear
