@@ -63,7 +63,7 @@ parted --script ${DISK} mklabel gpt
 
 # Creating the EFI and ROOT partitions
 
-echo -e ',512M,L\n,,L' | sfdisk ${DISK}
+echo -e ',512M,L\n,,L' | sfdisk -f ${DISK}
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 
