@@ -78,16 +78,16 @@ mkfs.vfat ${EFI}
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
 
 # Generation of Btrfs subvolumes on ROOT
-echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
-mount ${ROOT} /mnt
-    btrfs su cr /mnt/@
-    btrfs su cr /mnt/@home
-umount /mnt
+#echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
+#mount ${ROOT} /mnt
+#    btrfs su cr /mnt/@
+#    btrfs su cr /mnt/@home
+#umount /mnt
 
 # Mounting of ROOT partitions with the final parameters
-echo "Mounting of the ROOT partition"
-mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
-mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
+#echo "Mounting of the ROOT partition"
+#mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
+#mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@home ${ROOT} /mnt/home
 
 # Mounting of EFI partition with the final parameters
 #echo "Mounting of the EFI partition"
