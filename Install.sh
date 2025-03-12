@@ -58,52 +58,52 @@ while true;
         break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "1" ]];
-#        then    ${KEYBOARD}="fr-latin1"
+#        then    KEYBOARD="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "2" ]];
-#        then    ${KEYBOARD}="fr-latin1"
+#        then    KEYBOARD="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
         elif [[ ${KEYBOARD_ENTRY} = "3" ]];
-        then    ${KEYBOARD}="fr-latin1"
+        then    KEYBOARD="fr-latin1"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "4" ]];
-        then    ${KEYBOARD}="mac-fr"
+        then    KEYBOARD="mac-fr"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "5" ]];
-        then    ${KEYBOARD}="es"
+        then    KEYBOARD="es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "6" ]];
-        then    ${KEYBOARD}="mac-es"
+        then    KEYBOARD="mac-es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "7" ]];
-        then    ${KEYBOARD}="uk"
+        then    KEYBOARD="uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "8" ]];
-        then    ${KEYBOARD}="mac-uk"
+        then    KEYBOARD="mac-uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "9" ]];
-        then    ${KEYBOARD}="us"
+        then    KEYBOARD="us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "10" ]];
-        then    ${KEYBOARD}="mac-us"
+        then    KEYBOARD="mac-us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
