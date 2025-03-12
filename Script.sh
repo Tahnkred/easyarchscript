@@ -83,8 +83,11 @@ else echo -e "\e[31mError during partitioning, the disk type used is not recogni
      exit 0
 fi
 
+# Clear
+clear
+
 # Formatting the EFI partition to FAT 32
-mkfs.vfat -f ${EFI}
+echo mkfs.vfat -f ${EFI}
 
 # Formatting the ROOT partition to Btrfs
 #mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
