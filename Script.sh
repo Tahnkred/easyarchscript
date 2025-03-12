@@ -71,12 +71,14 @@ if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
     then EFI="${DISK}1"
          ROOT="${DISK}2"
     echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
+    echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI="${DISK}p1"
          ROOT="${DISK}p2"
     echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
+    echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
@@ -88,7 +90,7 @@ clear
 
 # Formatting the EFI partition to FAT 32
 #mkfs.vfat -f ${EFI}
-mkfs.fat --script -F 32 ${EFI}
+printf mkfs.fat -F 32 ${EFI}
 
 # Verification of EFI formatting in FAT32
 if [ ${EFI} -eq 0 ]; then
