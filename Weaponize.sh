@@ -43,7 +43,8 @@ done
 
 # Force unmounting disk
 #umount -fl ${DISK}
-dd if=/dev/zero of=${DISK} bs=1M status=progress
+mklabel gpt
+#dd if=/dev/zero of=${DISK} bs=1M status=progress
 # Erasing the disk
 #wipefs --all ${DISK}
 
