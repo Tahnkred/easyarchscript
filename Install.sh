@@ -188,6 +188,7 @@ while true;
         break
 
     else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
+         read ENTER_DISK
     fi
 done
 echo
