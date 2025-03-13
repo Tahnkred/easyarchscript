@@ -42,3 +42,15 @@ sudo umount -f
 
 # Erasing the disk
 wipefs --all ${DISK}
+
+# Rebooting on Install.sh
+clear
+
+echo "Would you like to Install Arch from the Install script? (Press 'y' to confirm, any other key to abort the installation process)."
+
+read ANSWER
+
+if [[ "${ANSWER}" == "y" || "${ANSWER}" == "Y" || "${ANSWER}" == "yes" || "${ANSWER}" == "Yes" ]];
+    then source ./Install.sh
+    else exit 1
+fi
