@@ -38,6 +38,9 @@ while true;
     fi
 done
 
+# Killing process
+fuser -k ${DISK}
+
 # Force unmounting disk
 umount -fl ${DISK}
 
