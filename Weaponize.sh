@@ -51,11 +51,9 @@ lsblk
 clear
 echo
 echo
-echo
-echo
-echo
 echo "Would you like to Install Arch from the Install script? (Press 'y' to confirm, any other key to abort the installation process)."
-
+echo
+echo
 read ANSWER
 
 if [[ "${ANSWER}" == "y" || "${ANSWER}" == "Y" || "${ANSWER}" == "yes" || "${ANSWER}" == "Yes" ]];
