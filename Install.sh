@@ -228,4 +228,5 @@ if [[ "${INSTALLATION}" == "y" || "${INSTALLATION}" == "Y" || "${INSTALLATION}" 
          export ROOT=${INSTALL_ROOT}
          export ROOT_NAME=${INSTALL_ROOT_NAME}
          source ./Implantation.sh
-else exit 1
+    else exit 1
+fi
