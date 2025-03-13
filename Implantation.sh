@@ -107,7 +107,7 @@ sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 clear
 
 #Chrooting
-cp ./easyarchscript/Chrooting.sh /mnt/home/
+cp Chrooting.sh /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
 cp ./DNS/dn0.conf /mnt/home/
 
