@@ -5,8 +5,8 @@ timedatectl set-timezone "${TIMEZONE}"
 timedatectl set-ntp true
 
 # Formatting ${DISK}...
-wipefs --all ${DISK}
 lsblk
+
 # Creating the GPT partition table
 parted --script ${DISK} mklabel gpt
 
