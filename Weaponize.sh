@@ -39,7 +39,7 @@ while true;
 done
 
 # Force unmounting disk
-umount -f ${DISK}
+umount -fl ${DISK}
 
 # Erasing the disk
 wipefs --all ${DISK}
