@@ -53,57 +53,57 @@ while true;
 
     if [[ ${KEYBOARD_ENTRY} = "0" ]];
         then    echo "Please enter manually your keyboard layout"
-                read KEYBOARD
+                read INSTALL_KEYBOARD
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "1" ]];
-#        then    KEYBOARD="fr-latin1"
+#        then    INSTALL_KEYBOARD="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "2" ]];
-#        then    KEYBOARD="fr-latin1"
+#        then    INSTALL_KEYBOARD="fr-latin1"
 #                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
 #        break
 
         elif [[ ${KEYBOARD_ENTRY} = "3" ]];
-        then    KEYBOARD="fr-latin1"
+        then    INSTALL_KEYBOARD="fr-latin1"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "4" ]];
-        then    KEYBOARD="mac-fr"
+        then    INSTALL_KEYBOARD="mac-fr"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "5" ]];
-        then    KEYBOARD="es"
+        then    INSTALL_KEYBOARD="es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "6" ]];
-        then    KEYBOARD="mac-es"
+        then    INSTALL_KEYBOARD="mac-es"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "7" ]];
-        then    KEYBOARD="uk"
+        then    INSTALL_KEYBOARD="uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "8" ]];
-        then    KEYBOARD="mac-uk"
+        then    INSTALL_KEYBOARD="mac-uk"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "9" ]];
-        then    KEYBOARD="us"
+        then    INSTALL_KEYBOARD="us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "10" ]];
-        then    KEYBOARD="mac-us"
+        then    INSTALL_KEYBOARD="mac-us"
                 echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
         break
 
@@ -121,7 +121,7 @@ echo "Please select your time zone (format: Continent/Capital. Example: Europe/P
 
 #while true;
     #do
-    read TIMEZONE
+    read INSTALL_TIMEZONE
 
 #    #valid_timezones=("Africa/Abidjan" "Africa/Accra" "Africa/Addis_Ababa" "Europe/Paris" "Africa/Asmara" ...) # Continue la liste
 
@@ -152,33 +152,33 @@ read DISK
 while true;
     do
     if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-        then EFI="${DISK}1"
-            ROOT="${DISK}2"
+        then INSTALL_EFI="${DISK}1"
+             INSTALL_ROOT="${DISK}2"
         break
 
     elif [[ ${DISK} =~ ^sd[a-z]$ ]];
-        then EFI="/dev/${DISK}1"
-            ROOT="/dev/${DISK}2"
+        then INSTALL_EFI="/dev/${DISK}1"
+             INSTALL_ROOT="/dev/${DISK}2"
         break
 
     elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-        then EFI="${DISK}p1"
-            ROOT="${DISK}p2"
+        then INSTALL_EFI="${DISK}p1"
+             INSTALL_ROOT="${DISK}p2"
         break
 
     elif [[ ${DISK} =~ ^nvme[0-9]+n1$ ]];
-        then EFI="/dev/${DISK}p1"
-            ROOT="/dev/${DISK}p2"
+        then INSTALL_EFI="/dev/${DISK}p1"
+             INSTALL_ROOT="/dev/${DISK}p2"
         break
 
     elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
-        then EFI="${DISK}1"
-            ROOT="${DISK}2"
+        then INSTALL_EFI="${DISK}1"
+             INSTALL_ROOT="${DISK}2"
         break
 
     elif [[ ${DISK} =~ ^vd[a-z]$ ]];
-        then EFI="/dev/${DISK}1"
-            ROOT="/dev/${DISK}2"
+        then INSTALL_EFI="/dev/${DISK}1"
+             INSTALL_ROOT="/dev/${DISK}2"
         break
 
     else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
@@ -193,32 +193,39 @@ read ROOT_NAME
 clear
 
 #Summary
+echo
+echo
 echo "Here is the summary of the installation :"
 echo
 echo
 echo
 echo
-echo "Keyboard layout            :          ${KEYBOARD}"
+echo "Keyboard layout            :          ${INSTALL_KEYBOARD}"
 echo
 echo
-echo "Timezone                   :          ${TIMEZONE}"
+echo "Timezone                   :          ${INSTALL_IMEZONE}"
 echo
 echo
-echo "Installation disk          :          ${DISK}"
+echo "Installation disk          :          ${INSTALL_DISK}"
 echo
 echo
-echo "Name of the main partition :          ${ROOT_NAME}"
+echo "Name of the main partition :          ${INSTALL_ROOT_NAME}"
 echo
 echo
 echo
 echo
 echo
-echo "Would you like to continue the installation? (y/N)"
+echo "Would you like to continue the installation? (Press 'y' to confirm, any other key to restart the installation process)."
 echo
-echo
+
 #if process or if abort
 read INSTALLATION
 
-if [[ ${INSTALLATION} = "y" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs" "YeS" ]];
-    then echo "SEND VALUES TO OTHER FILES"
-#else exit 1
+if [[ "${INSTALLATION}" == "y" || "${INSTALLATION}" == "Y" || "${INSTALLATION}" == "yes" || "${INSTALLATION}" == "Yes" ]];
+    then export KEYBOARD=${INSTALL_KEYBOARD}
+         export TIMEZONE=${INSTALL_TIMEZONE}
+         export EFI=${INSTALL_EFI}
+         export ROOT=${INSTALL_ROOT}
+         export ROOT_NAME=${INSTALL_ROOT_NAME}
+         source ./Implantation.sh
+else exit 1
