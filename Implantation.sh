@@ -104,7 +104,7 @@ cat /root/easyarchscript/Bootloader/refind_linux.conf > /mnt/boot/refind_linux.c
 sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 
 # Clear
-clear
+#clear
 
 # Copying Chrooting.sh on /mnt /bin/bash in order to execute it
 #mkdir /mnt/easyarchscript
