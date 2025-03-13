@@ -118,7 +118,8 @@ clear
 
 # Select timezone
 echo "Please select your time zone (format: Continent/Capital. Example: Europe/Paris)"
-
+echo
+echo
 #while true;
     #do
     read INSTALL_TIMEZONE
@@ -145,8 +146,9 @@ lsblk
 echo
 echo
 echo
-echo
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
+echo
+echo
 read ENTER_DISK
 
 while true;
@@ -188,12 +190,16 @@ while true;
         break
 
     else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
+         echo
+         echo
          read ENTER_DISK
     fi
 done
 echo
 echo
 echo "How would you like to name your main partition?"
+echo
+echo
 read INSTALL_ROOT_NAME
 
 # Clear
@@ -220,9 +226,8 @@ echo "Name of the main partition :          ${INSTALL_ROOT_NAME}"
 echo
 echo
 echo
-echo
-echo
 echo "Would you like to continue the installation? (Press 'y' to confirm, any other key to abort the installation process)."
+echo
 echo
 
 #if process or if abort
