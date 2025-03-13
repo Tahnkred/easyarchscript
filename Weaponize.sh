@@ -53,7 +53,7 @@ done
 umount -f ${FORMAT_DISK_1}
 umount -f ${FORMAT_DISK_2}
 
-mkfs.ext4 ${DISK}
+parted ${DISK}
 #clear
 echo
 echo
