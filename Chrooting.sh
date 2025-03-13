@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 printf "KEYMAP=%s\n" "$CHROOT_KEYBOARD"
-sleep 5s
-printf "KEYMAP=%s\n" "$CHROOT_KEYBOARD" >/etc/vconsole.conf
+
+sleep 10s
 
 # Making it permanent to the system
 printf "KEYMAP=%s\n" "$CHROOT_KEYBOARD" >/etc/vconsole.conf
@@ -23,5 +23,5 @@ sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist
 pacman -Syu networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
-cat /mnt/home/dn0.conf > /etc/NetworkManager/conf.d/dns-servers.conf
+cat ./mnt/home/dn0.conf > /etc/NetworkManager/conf.d/dns-servers.conf
 rm /mnt/home/dn0.conf
