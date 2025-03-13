@@ -187,6 +187,7 @@ echo
 echo
 echo "How would you like to name your main partition?"
 read ROOT_NAME
+
 # Clear
 clear
 
@@ -211,7 +212,7 @@ echo
 echo "Would you like to continue the installation? (y/N)"
 
 #if process or if abort
-read INSTALLATION
+#read INSTALLATION
 
 #if [[ ${INSTALLATION} = "y" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs" "YeS" ]];
 #    then SEND VALUES TO OTHER FILES
