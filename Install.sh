@@ -147,37 +147,43 @@ echo
 echo
 echo
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
-read DISK
+read ENTER_DISK
 
 while true;
     do
-    if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
-        then INSTALL_EFI="${DISK}1"
+    if [[ ${ENTER_DISK} =~ ^/dev/sd[a-z]$ ]]
+        then INSTALL_DISK="${ENTER_DISK}"
+             INSTALL_EFI="${DISK}1"
              INSTALL_ROOT="${DISK}2"
         break
 
-    elif [[ ${DISK} =~ ^sd[a-z]$ ]];
-        then INSTALL_EFI="/dev/${DISK}1"
+    elif [[ ${ENTER_DISK} =~ ^sd[a-z]$ ]];
+        then INSTALL_DISK="/dev/${ENTER_DISK}"
+             INSTALL_EFI="/dev/${DISK}1"
              INSTALL_ROOT="/dev/${DISK}2"
         break
 
-    elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
-        then INSTALL_EFI="${DISK}p1"
+    elif [[ ${ENTER_DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
+        then INSTALL_DISK="${ENTER_DISK}"
+             INSTALL_EFI="${DISK}p1"
              INSTALL_ROOT="${DISK}p2"
         break
 
-    elif [[ ${DISK} =~ ^nvme[0-9]+n1$ ]];
-        then INSTALL_EFI="/dev/${DISK}p1"
+    elif [[ ${ENTER_DISK} =~ ^nvme[0-9]+n1$ ]];
+        then INSTALL_DISK="/dev/${ENTER_DISK}"
+             INSTALL_EFI="/dev/${DISK}p1"
              INSTALL_ROOT="/dev/${DISK}p2"
         break
 
-    elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
-        then INSTALL_EFI="${DISK}1"
+    elif [[ ${ENTER_DISK} =~ ^/dev/vd[a-z]$ ]];
+        then INSTALL_DISK="${ENTER_DISK}"
+             INSTALL_EFI="${DISK}1"
              INSTALL_ROOT="${DISK}2"
         break
 
-    elif [[ ${DISK} =~ ^vd[a-z]$ ]];
-        then INSTALL_EFI="/dev/${DISK}1"
+    elif [[ ${ENTER_DISK} =~ ^vd[a-z]$ ]];
+        then INSTALL_DISK="/dev/${ENTER_DISK}"
+             INSTALL_EFI="/dev/${DISK}1"
              INSTALL_ROOT="/dev/${DISK}2"
         break
 
@@ -206,7 +212,7 @@ echo
 echo "Timezone                   :          ${INSTALL_TIMEZONE}"
 echo
 echo
-echo "Installation disk          :          ${DISK}"
+echo "Installation disk          :          ${INSTALL_DISK}"
 echo
 echo
 echo "Name of the main partition :          ${INSTALL_ROOT_NAME}"
@@ -224,6 +230,7 @@ read INSTALLATION
 if [[ "${INSTALLATION}" == "y" || "${INSTALLATION}" == "Y" || "${INSTALLATION}" == "yes" || "${INSTALLATION}" == "Yes" ]];
     then export KEYBOARD=${INSTALL_KEYBOARD}
          export TIMEZONE=${INSTALL_TIMEZONE}
+         export DISK=${INSTALL_DISK}
          export EFI=${INSTALL_EFI}
          export ROOT=${INSTALL_ROOT}
          export ROOT_NAME=${INSTALL_ROOT_NAME}
