@@ -11,38 +11,26 @@ while true;
     do
     if [[ ${ENTER_DISK} =~ ^/dev/sd[a-z]$ ]]
         then DISK=${ENTER_DISK}
-             FORMAT_DISK_1="${DISK}1"
-             FORMAT_DISK_2="${DISK}2"
         break
 
     elif [[ ${ENTER_DISK} =~ ^sd[a-z]$ ]];
         then DISK="/dev/${ENTER_DISK}"
-             FORMAT_DISK_1="${DISK}1"
-             FORMAT_DISK_2="${DISK}2"
         break
 
     elif [[ ${ENTER_DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
         then DISK=${ENTER_DISK}
-             FORMAT_DISK_1="${DISK}p1"
-             FORMAT_DISK_2="${DISK}p2"
         break
 
     elif [[ ${ENTER_DISK} =~ ^nvme[0-9]+n1$ ]];
         then DISK="/dev/${ENTER_DISK}"
-             FORMAT_DISK_1="${DISK}p1"
-             FORMAT_DISK_2="${DISK}p2"
         break
 
     elif [[ ${ENTER_DISK} =~ ^/dev/vd[a-z]$ ]];
         then DISK=${ENTER_DISK}
-             FORMAT_DISK_1="${DISK}1"
-             FORMAT_DISK_2="${DISK}2"
         break
 
     elif [[ ${ENTER_DISK} =~ ^vd[a-z]$ ]];
         then DISK="/dev/${ENTER_DISK}"
-             FORMAT_DISK_1="${DISK}1"
-             FORMAT_DISK_2="${DISK}2"
         break
 
     else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
@@ -50,9 +38,9 @@ while true;
     fi
 done
 
-umount -f ${FORMAT_DISK_1}
-umount -f ${FORMAT_DISK_2}
-
+umount -f /mnt/efi
+umount -f /mnt/home
+umount -f /mnt
 parted --script ${DISK} mklabel gpt
 #clear
 echo
