@@ -271,10 +271,10 @@ sleep 5s
 clear
 
 # Copying Chrooting.sh on ${ROOT}/mnt/@home in order to execute it
-cp /root/easyarchscript/Chrooting.sh ${ROOT}/mnt/@home
+cp /root/easyarchscript/Chrooting.sh /mnt/@home
 
 # Sending values to Chrooting.sh in order to make it work
-./${ROOT}/mnt/@home/script2.sh "${KEYBOARD}"
+/mnt/@home/script2.sh "${KEYBOARD}"
 
 #Chrooting
 arch-chroot /mnt/@home sh Chrooting.sh
