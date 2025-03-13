@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-echo "${CHROOT_KEYBOARD}"
-echo "test"
+printf "${CHROOT_KEYBOARD}"
+printf "test"
 
 # Setting keyboard layout
-sudo loadkeys ${CHROOT_KEYBOARD}
+printf sudo loadkeys ${CHROOT_KEYBOARD}
 
 # Making it permanent to the system
 sudo echo 'KEYMAP='${CHROOT_KEYBOARD}'' >> /etc/vconsole.conf
