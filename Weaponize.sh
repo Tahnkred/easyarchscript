@@ -2,9 +2,11 @@ clear
 echo
 echo
 lsblk
-
+echo
+echo
 echo "Please specify which disk you would like to erase."
-
+echo
+echo
 read ENTER_DISK
 
 while true;
