@@ -39,13 +39,13 @@ while true;
 done
 
 # Killing process
-fuser -k ${DISK}
+#fuser -k ${DISK}
 
 # Force unmounting disk
-umount -fl ${DISK}
-
+#umount -fl ${DISK}
+dd if=/dev/zero of=${DISK} bs=1M status=progress
 # Erasing the disk
-wipefs --all ${DISK}
+#wipefs --all ${DISK}
 
 # Rebooting on Install.sh
 #clear
