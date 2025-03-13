@@ -112,7 +112,7 @@ chmod +x /mnt/home/Chrooting.sh
 cp ./DNS/dn0.conf /mnt/home/
 
 export CHROOT_KEYBOARD="$KEYBOARD"
-source /home/Chrooting.sh
+source /mnt/home/Chrooting.sh
 
 sleep 5s
 sudo arch-chroot /mnt /bin/bash -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
