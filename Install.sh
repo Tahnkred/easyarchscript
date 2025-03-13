@@ -183,6 +183,7 @@ while true;
 
     else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
     fi
+done
 echo
 echo
 echo "How would you like to name your main partition?"
@@ -193,7 +194,10 @@ clear
 
 #Summary
 echo "Here is the summary of the installation :"
-
+echo
+echo
+echo
+echo
 echo "Keyboard layout            :          ${KEYBOARD}"
 echo
 echo
@@ -210,10 +214,11 @@ echo
 echo
 echo
 echo "Would you like to continue the installation? (y/N)"
-
+echo
+echo
 #if process or if abort
-#read INSTALLATION
+read INSTALLATION
 
-#if [[ ${INSTALLATION} = "y" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs" "YeS" ]];
-#    then SEND VALUES TO OTHER FILES
+if [[ ${INSTALLATION} = "y" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs" "YeS" ]];
+    then echo "SEND VALUES TO OTHER FILES"
 #else exit 1
