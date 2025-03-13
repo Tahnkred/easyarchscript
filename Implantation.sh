@@ -110,8 +110,5 @@ clear
 mkdir /mnt/easyarchscript
 cp Chrooting.sh /mnt/easyarchscript
 
-# Sending values to Chrooting.sh in order to make it work
-/mnt/bin/bash/Chrooting.sh "${KEYBOARD}"
-
 #Chrooting
-arch-chroot /mnt ./easyarchscript/Chrooting.sh
+arch-chroot /mnt /easyarchscript/Chrooting.sh
