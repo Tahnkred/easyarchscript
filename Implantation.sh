@@ -115,7 +115,4 @@ clear
 #Chrooting
 #arch-chroot /mnt ./easyarchscript/Chrooting.sh
 
-cp Chrooting.sh /mnt/root/ &&
-    sudo CHROOT_KEYBOARD="${KEYBOARD}"
-
-arch-chroot /mnt sudo sh -ec './root/Chrooting.sh; rm /root/Chrooting.sh; exit'
+sudo cp Chrooting.sh /mnt/root/ && sudo CHROOT_KEYBOARD="${KEYBOARD}" && arch-chroot /mnt sh -ec './root/Chrooting.sh; rm /root/Chrooting.sh; exit'
