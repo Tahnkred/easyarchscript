@@ -160,13 +160,9 @@ lsblk
 # Creating the GPT partition table
 parted --script ${DISK} mklabel gpt
 
-sleep 5s
-
 # Creating the EFI and ROOT partitions
 
 echo -e ',512M,L\n,,L' | sfdisk ${DISK} -f
-
-sleep 5s
 
 # Creating variables for disk type names: NVMe or HDD/SSD
 
@@ -192,10 +188,9 @@ elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
+     sleep 5s
      exit 0
 fi
-
-sleep 5s
 
 # Clear
 clear
@@ -203,12 +198,8 @@ clear
 # Formatting the EFI partition to FAT 32
 mkfs.vfat ${EFI}
 
-sleep 5s
-
 # Formatting the ROOT partition to Btrfs
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
-
-sleep 5s
 
 # Clear
 clear
@@ -220,8 +211,6 @@ mount ${ROOT} /mnt
     btrfs su cr /mnt/@home
 umount /mnt
 
-sleep 5s
-
 # Mounting of ROOT partitions with the final parameters
 echo "Mounting of the ROOT partition"
 mount -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,subvol=@ ${ROOT} /mnt
@@ -230,8 +219,6 @@ mount --mkdir -o noatime,commit=120,compress=zstd,discard=async,space_cache=v2,s
 # Mounting of EFI partition with the final parameters
 echo "Mounting of the EFI partition"
 mount --mkdir ${EFI} /mnt/efi
-
-sleep 5s
 
 # Clear
 clear
@@ -242,16 +229,12 @@ pacman-key -init
 pacman-key --populate
 pacman -Sy archlinux-keyring --noconfirm --needed
 
-sleep 5s
-
 # Clear
 clear
 
 # Installation of the base system
 echo "Installation of the base system"
 pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
-
-sleep 5s
 
 # Clear
 clear
@@ -265,14 +248,10 @@ refind-install --root /mnt
     sed -i 's/^#fold_linux_kernels false/fold_linux_kernels false/' /mnt/efi/EFI/refind/refind.conf
     sed -i 's/^#default_selection "+,bzImage,vmlinuz"/default_selection "+,bzImage,vmlinuz"/' /mnt/efi/EFI/refind/refind.conf
 
-sleep 5s
-
 # Retrieving the UUID and modifying the boot parameters (refind_linux.conf)
 UUID=$(grep -oP 'UUID=\K[^\s]+' /mnt/boot/refind_linux.conf | head -n 1)
 cat /root/easyarchscript/Bootloader/refind_linux.conf > /mnt/boot/refind_linux.conf
 sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
-
-sleep 5s
 
 # Clear
 clear
