@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-echo "${KEYBOARD}"
+echo "${CHROOT_KEYBOARD}"
 
 sleep 10s
 
 # Setting keyboard layout
-loadkeys ${KEYBOARD}
+loadkeys ${CHROOT_KEYBOARD}
 
 sleep 5s
 
 # Making it permanent to the system
-echo 'KEYMAP='${KEYBOARD}'' >> /etc/vconsole.conf
+echo 'KEYMAP='${CHROOT_KEYBOARD}'' >> /etc/vconsole.conf
 
 sleep 5s
 
