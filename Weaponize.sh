@@ -46,6 +46,7 @@ umount -f /mnt
 parted --script ${DISK} mklabel gpt
 parted --script ${DISK} mkpart primary ext4 0% 100%
 mkfs.ext4 -F ${DISK}1
+wipefs -a ${DISK}1
 parted --script ${DISK} mklabel gpt
 echo
 echo
