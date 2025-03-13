@@ -111,4 +111,4 @@ mkdir /mnt/easyarchscript
 cp Chrooting.sh /mnt/easyarchscript
 
 #Chrooting
-arch-chroot /mnt /easyarchscript/Chrooting.sh
+arch-chroot /mnt/easyarchscript/Chrooting.sh
