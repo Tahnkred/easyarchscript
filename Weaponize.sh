@@ -43,8 +43,10 @@ umount -f /mnt/home
 umount -f /mnt
 parted --script ${DISK} mklabel gpt
 parted --script ${DISK} mkpart primary ext4 0% 100%
-mkfs.ext4 ${DISK}1 --noconfirm --needed
+mkfs.ext4 -F ${DISK}1
 parted --script ${DISK} mklabel gpt
+echo
+echo
 lsblk
 sleep 5s
 #clear
