@@ -107,8 +107,8 @@ sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 clear
 
 #Chrooting
-cp Chrooting.sh /mnt/home/
+cp /easyarchscript/Chrooting.sh /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
-cp /DNS/dn0.conf /mnt/home/
+cp /easyarchscript/DNS/dn0.conf /mnt/home/
 sleep 5s
-sudo arch-chroot /mnt /bin/bash && CHROOT_KEYBOARD="${KEYBOARD}" && -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
+sudo CHROOT_KEYBOARD="$KEYBOARD" && arch-chroot /mnt /bin/bash -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
