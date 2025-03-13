@@ -184,6 +184,13 @@ elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
 
+elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
+    then EFI="${DISK}1"
+         ROOT="${DISK}2"
+    echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
+    echo
+    echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
+
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      exit 0
 fi
