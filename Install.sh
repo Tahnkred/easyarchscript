@@ -11,12 +11,19 @@
 clear
 
 # Check UEFI
+echo
 cat /sys/firmware/efi/fw_platform_size
 
 if [[ $(cat /sys/firmware/efi/fw_platform_size) == *64* ]];
-    then echo -e "\e[32mUEFI is enabled on this device.\e[0m"
+    then
+        echo
+        echo
+        echo -e "\e[32mUEFI is enabled on this device.\e[0m"
         sleep 0.5s
-    else echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
+    else
+        echo
+        echo
+        echo -e "\e[31mUEFI is not enabled on this device!\e[0m"
         sleep 5s
          exit 0
 fi
@@ -25,6 +32,7 @@ fi
 clear
 
 #Keyboard layout
+echo
 echo "Please enter your keyboard layout (enter the number below)"
 echo
 echo
@@ -117,6 +125,7 @@ sleep 0.5s
 clear
 
 # Select timezone
+echo
 echo "Please select your time zone (format: Continent/Capital. Example: Europe/Paris)"
 echo
 echo
@@ -142,6 +151,7 @@ echo
 clear
 
 # Hard disk configuration
+echo
 lsblk
 echo
 echo
