@@ -53,7 +53,7 @@ done
 umount -f ${FORMAT_DISK_1}
 umount -f ${FORMAT_DISK_2}
 
-parted ${DISK}
+parted --script ${DISK} mklabel gpt
 #clear
 echo
 echo
