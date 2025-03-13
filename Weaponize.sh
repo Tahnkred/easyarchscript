@@ -42,6 +42,10 @@ umount -f /mnt/efi
 umount -f /mnt/home
 umount -f /mnt
 parted --script ${DISK} mklabel gpt
+mkpart primary ext4 0% 100%
+mkfs.ext4 ${DISK}1
+lsblk
+sleep 5s
 #clear
 echo
 echo
