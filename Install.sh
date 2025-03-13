@@ -213,6 +213,6 @@ echo "Would you like to continue the installation? (y/N)"
 #if process or if abort
 read INSTALLATION
 
-if [[ $INSTALLATION = "y" "yes" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs"]];
-    then SEND VALUES TO OTHER FILES
-else exit 1
+#if [[ ${INSTALLATION} = "y" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs" "YeS" ]];
+#    then SEND VALUES TO OTHER FILES
+#else exit 1
