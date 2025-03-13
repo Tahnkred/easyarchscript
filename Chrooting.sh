@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo ${KEYBOARD}
+echo "${KEYBOARD}"
 
 sleep 10s
 

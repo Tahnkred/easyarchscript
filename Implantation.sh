@@ -107,9 +107,15 @@ sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 clear
 
 # Copying Chrooting.sh on /mnt /bin/bash in order to execute it
-mkdir /mnt/easyarchscript
-cp Chrooting.sh /mnt/easyarchscript
+#mkdir /mnt/easyarchscript
+#cp Chrooting.sh /mnt/easyarchscript
+
+#echo 'source /root/easyarchscript/Chrooting.sh' >> /root/.bashrc
 
 #Chrooting
-#arch-chroot /mnt/easyarchscript/Chrooting.sh
-arch-chroot /mnt /bin/bash
+#arch-chroot /mnt ./easyarchscript/Chrooting.sh
+
+sudo cp /easyarchscript/Chrooting.sh /mnt/root/ &&
+    sudo CHROOT_KEYBOARD="${KEYBOARD}"
+
+artix-chroot /mnt sh -ec './root/Chrooting.sh; rm /root/Chrooting.sh; exit'
