@@ -23,3 +23,4 @@ sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist
 pacman -Syu networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
+cat ./root/easyarchscript/DNS/dn0.conf > /etc/NetworkManager/conf.d/dns-servers.conf
