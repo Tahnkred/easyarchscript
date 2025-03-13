@@ -1,9 +1,44 @@
+echo
+echo
 lsblk
 
-echo "Please specify which disk you would like to reset."
+echo "Please specify which disk you would like to erase."
 
-read DISK
+read ENTER_DISK
 
-sudo umount -af
+while true;
+    do
+    if [[ ${ENTER_DISK} =~ ^/dev/sd[a-z]$ ]]
+        then DISK=${ENTER_DISK}
+        break
 
+    elif [[ ${ENTER_DISK} =~ ^sd[a-z]$ ]];
+        then DISK="/dev/${ENTER_DISK}"
+        break
+
+    elif [[ ${ENTER_DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
+        then DISK=${ENTER_DISK}
+        break
+
+    elif [[ ${ENTER_DISK} =~ ^nvme[0-9]+n1$ ]];
+        then DISK="/dev/${ENTER_DISK}"
+        break
+
+    elif [[ ${ENTER_DISK} =~ ^/dev/vd[a-z]$ ]];
+        then DISK=${ENTER_DISK}
+        break
+
+    elif [[ ${ENTER_DISK} =~ ^vd[a-z]$ ]];
+        then DISK="/dev/${ENTER_DISK}"
+        break
+
+    else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
+         read ENTER_DISK
+    fi
+done
+
+# Force unmounting disk
+sudo umount -f
+
+# Erasing the disk
 wipefs --all ${DISK}
