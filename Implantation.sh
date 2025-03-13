@@ -115,4 +115,4 @@ sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 #Chrooting
 #arch-chroot /mnt ./easyarchscript/Chrooting.sh
 
-sudo cp Chrooting.sh /mnt/root/ && sudo CHROOT_KEYBOARD="${KEYBOARD}" && arch-chroot /mnt sh -ec './root/Chrooting.sh; rm /root/Chrooting.sh; exit'
+cp Chrooting.sh /mnt/root/ && sudo CHROOT_KEYBOARD="${KEYBOARD}" && arch-chroot /mnt sh -ec './root/Chrooting.sh; rm /root/Chrooting.sh; exit'
