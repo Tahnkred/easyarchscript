@@ -142,10 +142,77 @@ clear
 
 # Hard disk configuration
 lsblk
+echo
+echo
+echo
+echo
 echo "Please specify the path of the disk where you want to install the system. (Example: /dev/sda)."
 read DISK
-echo
+
+while true;
+    do
+    if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
+        then EFI="${DISK}1"
+            ROOT="${DISK}2"
+        break
+
+    elif [[ ${DISK} =~ ^sd[a-z]$ ]];
+        then EFI="/dev/${DISK}1"
+            ROOT="/dev/${DISK}2"
+        break
+
+    elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
+        then EFI="${DISK}p1"
+            ROOT="${DISK}p2"
+        break
+
+    elif [[ ${DISK} =~ ^nvme[0-9]+n1$ ]];
+        then EFI="/dev/${DISK}p1"
+            ROOT="/dev/${DISK}p2"
+        break
+
+    elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
+        then EFI="${DISK}1"
+            ROOT="${DISK}2"
+        break
+
+    elif [[ ${DISK} =~ ^vd[a-z]$ ]];
+        then EFI="/dev/${DISK}1"
+            ROOT="/dev/${DISK}2"
+        break
+
+    else echo -e "\e[31mError! The mentioned disk is not in the list or has been incorrectly named. Please try again.\e[0m"
+    fi
 echo
 echo
 echo "How would you like to name your main partition?"
 read ROOT_NAME
+# Clear
+clear
+
+#Summary
+echo "Here is the summary of the installation :"
+
+echo "Keyboard layout            :          ${KEYBOARD}"
+echo
+echo
+echo "Timezone                   :          ${TIMEZONE}"
+echo
+echo
+echo "Installation disk          :          ${DISK}"
+echo
+echo
+echo "Name of the main partition :          ${ROOT_NAME}"
+echo
+echo
+echo
+echo
+echo
+echo "Would you like to continue the installation? (y/N)"
+
+#if process or if abort
+read INSTALLATION
+
+if [[ $INSTALLATION = "y" "yes" "Y" "Yes" "yes" "YEs" "yES" "yeS" "yEs"]];
+    then SEND VALUES TO OTHER FILES
+else exit 1
