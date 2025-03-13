@@ -260,7 +260,7 @@ clear
 cp /root/easyarchscript/Chrooting.sh /mnt/bin/bash
 
 # Sending values to Chrooting.sh in order to make it work
-/mnt/@home/script2.sh "${KEYBOARD}"
+/mnt/bin/bash/Chrooting.sh "${KEYBOARD}"
 
 #Chrooting
 arch-chroot /mnt /bin/bash sh Chrooting.sh
