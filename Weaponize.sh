@@ -48,8 +48,7 @@ parted --script ${DISK} mklabel gpt
 echo
 echo
 lsblk
-sleep 5s
-#clear
+clear
 echo
 echo
 echo
