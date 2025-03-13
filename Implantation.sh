@@ -109,10 +109,10 @@ clear
 #Chrooting
 cp Chrooting.sh /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
-cp ./DNS/dn0.conf /mnt/home/
+cp ./DNS/dnzero.conf /mnt/home/
 
 export CHROOT_KEYBOARD="$KEYBOARD"
 source /mnt/home/Chrooting.sh
 
-sleep 5s
+sleep 10s
 sudo arch-chroot /mnt /bin/bash -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
