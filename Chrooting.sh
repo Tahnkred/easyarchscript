@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 printf "KEYMAP=%s\n" "$CHROOT_KEYBOARD"
-sleep 2s
+sleep 5s
 printf "KEYMAP=%s\n" "$CHROOT_KEYBOARD" >/etc/vconsole.conf
 
 # Making it permanent to the system

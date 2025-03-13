@@ -104,19 +104,11 @@ cat /root/easyarchscript/Bootloader/refind_linux.conf > /mnt/boot/refind_linux.c
 sed -i 's/(XXXXXXXX)/'${UUID}'/g' /mnt/boot/refind_linux.conf
 
 # Clear
-#clear
-
-# Copying Chrooting.sh on /mnt /bin/bash in order to execute it
-#mkdir /mnt/easyarchscript
-#cp Chrooting.sh /mnt/easyarchscript
-
-#echo 'source /root/easyarchscript/Chrooting.sh' >> /root/.bashrc
+clear
 
 #Chrooting
-#arch-chroot /mnt ./easyarchscript/Chrooting.sh
-
-#sudo cp Chrooting.sh /mnt/home/ && CHROOT_KEYBOARD="${KEYBOARD}" && chmod +x /mnt/home/Chrooting.sh && arch-chroot /mnt /bin/bash && sh -ec './home/Chrooting.sh; rm /home/Chrooting.sh; exit'
 cp Chrooting.sh /mnt/home/
-cp /DNS/dn0.conf /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
-sudo arch-chroot /mnt /bin/bash -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit" && CHROOT_KEYBOARD="${KEYBOARD}"
+cp /DNS/dn0.conf /mnt/home/
+sleep 5s
+sudo arch-chroot /mnt /bin/bash && CHROOT_KEYBOARD="${KEYBOARD}" && -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
