@@ -1,3 +1,4 @@
+clear
 echo
 echo
 lsblk
@@ -44,7 +45,7 @@ sudo umount -f
 wipefs --all ${DISK}
 
 # Rebooting on Install.sh
-clear
+#clear
 
 echo "Would you like to Install Arch from the Install script? (Press 'y' to confirm, any other key to abort the installation process)."
 
