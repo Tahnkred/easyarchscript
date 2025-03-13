@@ -222,7 +222,7 @@ echo
 echo
 echo
 echo
-echo "Would you like to continue the installation? (Press 'y' to confirm, any other key to restart the installation process)."
+echo "Would you like to continue the installation? (Press 'y' to confirm, any other key to abort the installation process)."
 echo
 
 #if process or if abort
