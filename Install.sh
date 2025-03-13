@@ -54,57 +54,57 @@ while true;
     if [[ ${KEYBOARD_ENTRY} = "0" ]];
         then    echo "Please enter manually your keyboard layout"
                 read INSTALL_KEYBOARD
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "1" ]];
 #        then    INSTALL_KEYBOARD="fr-latin1"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
 #        break
 
 #        elif [[ "${KEYBOARD_ENTRY}" = "2" ]];
 #        then    INSTALL_KEYBOARD="fr-latin1"
-#                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+#                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
 #        break
 
         elif [[ ${KEYBOARD_ENTRY} = "3" ]];
         then    INSTALL_KEYBOARD="fr-latin1"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "4" ]];
         then    INSTALL_KEYBOARD="mac-fr"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "5" ]];
         then    INSTALL_KEYBOARD="es"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "6" ]];
         then    INSTALL_KEYBOARD="mac-es"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "7" ]];
         then    INSTALL_KEYBOARD="uk"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "8" ]];
         then    INSTALL_KEYBOARD="mac-uk"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "9" ]];
         then    INSTALL_KEYBOARD="us"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
         elif [[ ${KEYBOARD_ENTRY} = "10" ]];
         then    INSTALL_KEYBOARD="mac-us"
-                echo -e "\e[32mThe keyboard layout has been set to "${KEYBOARD}".\e[0m"
+                echo -e "\e[32mThe keyboard layout has been set to "${INSTALL_KEYBOARD}".\e[0m"
         break
 
     else echo -e "\e[31mError! Please enter a value zone again.\e[0m"
@@ -187,7 +187,7 @@ done
 echo
 echo
 echo "How would you like to name your main partition?"
-read ROOT_NAME
+read INSTALL_ROOT_NAME
 
 # Clear
 clear
@@ -203,10 +203,10 @@ echo
 echo "Keyboard layout            :          ${INSTALL_KEYBOARD}"
 echo
 echo
-echo "Timezone                   :          ${INSTALL_IMEZONE}"
+echo "Timezone                   :          ${INSTALL_TIMEZONE}"
 echo
 echo
-echo "Installation disk          :          ${INSTALL_DISK}"
+echo "Installation disk          :          ${DISK}"
 echo
 echo
 echo "Name of the main partition :          ${INSTALL_ROOT_NAME}"
