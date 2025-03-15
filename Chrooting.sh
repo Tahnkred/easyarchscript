@@ -21,8 +21,8 @@ pacman -Syu networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
 #Installing DNS
-cat /mnt/home/dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
-rm /mnt/home/dn0.txt
+cat dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
+rm dn0.txt
 
 
 sleep 50s

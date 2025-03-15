@@ -96,3 +96,6 @@ source /mnt/home/Chrooting.sh
 
 sleep 10s
 sudo arch-chroot /mnt /bin/bash -c "./home/Chrooting.sh; rm /home/Chrooting.sh; exit"
+
+#After Chrooting
+echo "Hi there it's just a test"
