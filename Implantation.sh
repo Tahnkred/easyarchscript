@@ -4,55 +4,41 @@
 timedatectl set-timezone "${TIMEZONE}"
 timedatectl set-ntp true
 
-# Formatting ${DISK}...
-lsblk
-
 # Creating the GPT partition table
 parted --script ${DISK} mklabel gpt
 
 # Creating the EFI and ROOT partitions
-
 echo -e ',512M,L\n,,L' | sfdisk ${DISK} -f
 
 # Creating variables for disk type names: NVMe or HDD/SSD
-
 if [[ ${DISK} =~ ^/dev/sd[a-z]$ ]]
     then EFI="${DISK}1"
          ROOT="${DISK}2"
     echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
     echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
-
 elif [[ ${DISK} =~ ^/dev/nvme[0-9]+n1$ ]];
     then EFI="${DISK}p1"
          ROOT="${DISK}p2"
     echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
     echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
-
 elif [[ ${DISK} =~ ^/dev/vd[a-z]$ ]];
     then EFI="${DISK}1"
          ROOT="${DISK}2"
     echo -e "\e[32mThe EFI partition has been created on ${EFI}.\e[0m"
     echo
     echo -e "\e[32mThe ROOT partition has been created on ${ROOT}.\e[0m"
-
 else echo -e "\e[31mError during partitioning, the disk type used is not recognized by the installation script. Installation process aborted.\e[0m"
      sleep 5s
      exit 0
 fi
-
-# Clear
-clear
 
 # Formatting the EFI partition to FAT 32
 mkfs.vfat ${EFI}
 
 # Formatting the ROOT partition to Btrfs
 mkfs.btrfs -L ${ROOT_NAME} ${ROOT}
-
-# Clear
-clear
 
 # Generation of Btrfs subvolumes on ROOT
 echo "Partitioning of subvolumes ${ROOT}/mnt/@ & ${ROOT}/mnt/@home"
