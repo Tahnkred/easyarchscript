@@ -110,7 +110,6 @@ clear
 cp Chrooting.sh /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
 cp DNS/dn0.txt /mnt/home/
-chmod +x /mnt/home/dn0.txt
 
 export CHROOT_KEYBOARD="$KEYBOARD"
 source /mnt/home/Chrooting.sh
