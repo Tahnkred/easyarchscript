@@ -21,8 +21,8 @@ pacstrap -K /mnt networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
 #Installing DNS
-cat /home/dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
-rm /home/dn0.txt
+cat ./dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
+rm ./dn0.txt
 
 
 sleep 20s
