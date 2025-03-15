@@ -65,15 +65,9 @@ pacman-key -init
 pacman-key --populate
 pacman -Sy archlinux-keyring --noconfirm --needed
 
-# Clear
-clear
-
 # Installation of the base system
 echo "Installation of the base system"
 pacstrap -K /mnt base base-devel linux-zen linux-zen-headers linux-firmware intel-ucode amd-ucode btrfs-progs refind efibootmgr gptfdisk bash nano man-db tealdeer git mesa vulkan-radeon libva-mesa-driver mesa-vdpau --noconfirm --needed
-
-# Clear
-clear
 
 # Installation of the boot loader (refind.conf)
 echo "Installation of 'refind' (bootloader)"
