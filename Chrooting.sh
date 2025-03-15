@@ -50,11 +50,11 @@ systemctl enable NetworkManager
 
 sleep 10s
 
-cat ./mnt/home/dnzero.conf > /etc/NetworkManager/conf.d/dns-servers.conf
+cat ./mnt/home/dn0.conf > /etc/NetworkManager/conf.d/dns-servers.conf
 
 sleep 10s
 
-rm /mnt/home/dnzero.conf
+rm /mnt/home/dn0.conf
 
 
 sleep 50s

@@ -109,8 +109,8 @@ clear
 #Chrooting
 cp Chrooting.sh /mnt/home/
 chmod +x /mnt/home/Chrooting.sh
-cp /DNS/dnzero.conf /mnt/home/
-chmod +x /mnt/home/dnzero.conf
+cp DNS/dn0.conf /mnt/home/
+chmod +x /mnt/home/dn0.conf
 
 export CHROOT_KEYBOARD="$KEYBOARD"
 source /mnt/home/Chrooting.sh
