@@ -61,7 +61,7 @@ clear
 
 # Regeneration of pacstrap keys
 echo "Regeneration of pacman keys"
-pacman-key -init
+pacman-key --init
 pacman-key --populate
 pacman -Sy archlinux-keyring --noconfirm --needed
 
