@@ -17,7 +17,7 @@ echo "ILoveCandy" >> /etc/pacman.conf
 sleep 5s
 
 # Installing NetworkManager
-pacstrap -K /mnt networkmanager --noconfirm --needed
+pacstrap -U /mnt networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
 #Installing DNS
