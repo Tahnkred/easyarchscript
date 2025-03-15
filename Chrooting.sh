@@ -10,11 +10,11 @@ sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=15s/g' /etc/systemd/u
 sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /etc/pacman.conf
 sed -i 's/ParallelDownloads = 5/ParallelDownloads = 7/g' /etc/pacman.conf
-echo "ILoveCandy" >> /etc/pacman.conf
 sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf                                                    #Idk it doesn't work
 sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf    #Idk it doesn't work
+echo "ILoveCandy" >> /etc/pacman.conf
 
-sleep 10s
+sleep 5s
 
 # Installing NetworkManager
 pacman -Syu networkmanager --noconfirm --needed
@@ -25,4 +25,4 @@ cat dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
 rm dn0.txt
 
 
-sleep 50s
+sleep 20s
