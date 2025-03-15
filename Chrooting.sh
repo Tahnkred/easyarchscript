@@ -11,8 +11,8 @@ sed -i 's/#Color/Color/g' /etc/pacman.conf
 sed -i 's/#VerbosePkgLists/VerbosePkgLists/g' /etc/pacman.conf
 sed -i 's/ParallelDownloads = 5/ParallelDownloads = 7/g' /etc/pacman.conf
 echo "ILoveCandy" >> /etc/pacman.conf
-sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf
-sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf
+sed -i 's/#[multilib]/[multilib]/g' /etc/pacman.conf                                                    #Idk it doesn't work
+sed -i 's/#Include = /etc/pacman.d/mirrorlist/Include = /etc/pacman.d/mirrorlist/g' /etc/pacman.conf    #Idk it doesn't work
 
 sleep 10s
 
