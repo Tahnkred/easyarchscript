@@ -17,12 +17,12 @@ echo "ILoveCandy" >> /etc/pacman.conf
 sleep 5s
 
 # Installing NetworkManager
-pacman -Syu networkmanager --noconfirm --needed
+pacstrap -K networkmanager --noconfirm --needed
 systemctl enable NetworkManager
 
 #Installing DNS
-cat dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
-rm dn0.txt
+cat ./home/dn0.txt > /etc/NetworkManager/conf.d/dns-servers.conf
+rm ./home/dn0.txt
 
 
 sleep 20s
